@@ -1,8 +1,22 @@
+"""Basic GUI calculator made in python"""
+"""Copyright (C) 2018 Jakob Fletcher"""
 from tkinter import *
 from tkinter import ttk
 from math import *
 
 """Updates text_input box according to what numeric button you press"""
+def op_press(num):
+    global counter
+    global content
+    content = content + str(num)
+    text_input.set(content)
+    counter = counter + 1
+
+    if (counter > 1):
+        text_input.set(show=" ")
+        content = ""
+        counter = 0
+
 def num_press(num):
     global content
     content = content + str(num)
@@ -11,24 +25,30 @@ def num_press(num):
 """Clears text box by clearing the content variable"""
 def clear():
     global content
+    global counter
     content = ""
     text_input.set(content)
+    counter = 0
 
 """Uses built in python function eval once equals is clicked"""
-def equal_event():
 
+def equal_event():
     try:
         global content
+        global counter
         total = str(eval(content))
         text_input.set(total)
         content = ""
+        counter = 0
 
     except:
-        text_input.set("ERROR!")
+        text_input.set("ERROR! Nothing to calculate")
         content = ""
+        counter = 0
 
 root = Tk()
 
+counter = 0
 content = ""
 
 frame = Frame(root)
@@ -52,10 +72,10 @@ button_9 = Button(num_frame, text="9", bd=5, command=lambda: num_press(9), width
 button_6 = Button(num_frame, text="6", bd=5, command=lambda: num_press(6), width=2, height=2)
 button_3 = Button(num_frame, text="3", bd=5, command=lambda: num_press(3), width=2, height=2)
 button_0 = Button(zero_frame, text = "0", bd=5, command=lambda: num_press(0), width = 10, height=2)
-add_button = Button(num_frame, text = "+", bd=5, command=lambda: num_press("+"), width=2, height=2)
-sub_button = Button(num_frame, text = "-", bd=5, command=lambda: num_press("-"), width=2, height=2)
-mult_button = Button(num_frame, text = "*", bd=5, command=lambda: num_press("*"), width=2, height=2)
-div_button = Button(num_frame, text = "/", bd=5, command=lambda: num_press("/"), width=2, height=2)
+add_button = Button(num_frame, text = "+", bd=5, command=lambda: op_press("+"), width=2, height=2)
+sub_button = Button(num_frame, text = "-", bd=5, command=lambda: op_press("-"), width=2, height=2)
+mult_button = Button(num_frame, text = "*", bd=5, command=lambda: op_press("*"), width=2, height=2)
+div_button = Button(num_frame, text = "/", bd=5, command=lambda: op_press("/"), width=2, height=2)
 eql_button = Button(num_frame, text = "=", bd=5, command=lambda: equal_event(), width=2, height=2)
 clear_button = Button(num_frame, text = "C", bd=5, command=lambda: clear(), width=2, height=2)
 
@@ -80,7 +100,6 @@ div_button.grid(row=1, column=4, sticky=W, pady=4)
 eql_button.grid(row=2, column=4, sticky=W, pady=4)
 clear_button.grid(row=3, column=4, sticky=W, pady=4)
 
-
 button_0.grid(row=3, column=0, sticky=S)
 dec_button.grid(row=3, column=1)
 
@@ -91,5 +110,4 @@ zero_frame.pack()
 
 """Loops program until it is closed"""
 root.mainloop()
-
 
