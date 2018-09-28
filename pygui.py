@@ -13,7 +13,7 @@ def op_press(num):
     counter = counter + 1
 
     if (counter > 1):
-        text_input.set(show=" ")
+        text_input.set("Error! Ops cannot be next to eachother")
         content = ""
         counter = 0
 
