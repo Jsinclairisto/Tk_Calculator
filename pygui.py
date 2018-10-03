@@ -61,7 +61,7 @@ root.title("TK Calculator")
 text_input = StringVar()
 
 """Create the buttons here"""
-num_expr = Entry(frame, textvariable = text_input, bd=10, insertwidth = 1, font = 30)
+num_expr = Entry(frame, textvariable = text_input, bd=10, insertwidth = 3, font = 30, width = 23)
 button_7 = Button(num_frame, text="7", bd=5, command=lambda: num_press(7), width=2, height=2)
 button_4 = Button(num_frame, text="4", bd=5, command=lambda: num_press(4), width=2, height=2)
 button_1 = Button(num_frame, text="1", bd=5, command=lambda: num_press(1), width=2, height=2)
@@ -110,4 +110,3 @@ zero_frame.pack()
 
 """Loops program until it is closed"""
 root.mainloop()
-
