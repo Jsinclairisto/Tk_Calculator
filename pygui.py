@@ -1,3 +1,4 @@
+#/usr/bin/env python3
 """Basic GUI calculator made in python"""
 """Copyright (C) 2018 Jakob Fletcher"""
 from tkinter import *
